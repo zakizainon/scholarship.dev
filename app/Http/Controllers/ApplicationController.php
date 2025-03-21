@@ -84,7 +84,11 @@ class ApplicationController extends Controller
                 Session::forget('name');
             }
 
-
+            // Dropdown dataset
+            $statedd = DB::table('lookupcode')
+                    ->where('codegroup', '=', 'STATE')
+                    ->orderBy('orderval', 'asc')
+                    ->get();
 
             return view('apply.index', [
             'step' => $step,
@@ -93,6 +97,7 @@ class ApplicationController extends Controller
             'academic_qualification' => $request->user()->academic_qualification,
             'guardian' => $request->user()->guardian,
             'documents' => $request->user()->document,
+            'statedd' => $statedd,
         ]);
     }
 

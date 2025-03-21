@@ -119,21 +119,7 @@
                             }if (Session::get('tab09') == "1") {
                                 $consentflag = "";
                             }
-                            // if (Session::get('tab01') == "1") {
-                            //     $personalflag =  "";
-                            // }elseif (Session::get('tab10') == "1"){
-                            //     $parentdetailsflag =  "";
-                            // }elseif (Session::get('tab02') == "1") {
-                            //     $academicsflag =  "";
-                            // }elseif (Session::get('tab03') == "1") {
-                            //     $spmflag =  "";
-                            // }elseif (Session::get('tab04') == "1") {
-                            //     $skillsflag =  "";
-                            // }elseif (Session::get('tab05') == "1") {
-                            //     $experienceflag =  "";
-                            // }else
-                            //     $personalflag = "hidden";
-                            //     $parentdetailsflag = "hidden"; $academicsflag = "hidden"; $spmflag = "hidden"; $skillsflag = "hidden"; $experienceflag = "hidden";
+                            
                         ?>
                         <nav class="flex gap-x-2" aria-label="Tabs" role="tablist" data-hs-tab-select="#tab-select">
                             <button type="button"
@@ -554,23 +540,12 @@
                                                             "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                                                 }' class="hidden" value="" name="birthstate">>
                                                 <option value="">Select your birth state</option>
-                                                <option value="MYS01" {{ old('birthstate') == 'MYS01' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS01' ? 'selected' : '' : '' )}}>Johor</option>
-                                                <option value="MYS02" {{ old('birthstate') == 'MYS02' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS02' ? 'selected' : '' : '' )}}>Kedah</option>
-                                                <option value="MYS03" {{ old('birthstate') == 'MYS03' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS03' ? 'selected' : '' : '' )}}>Kelantan</option>
-                                                <option value="MYS04" {{ old('birthstate') == 'MYS04' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS04' ? 'selected' : '' : '' )}}>Malacca</option>
-                                                <option value="MYS05" {{ old('birthstate') == 'MYS05' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS05' ? 'selected' : '' : '' )}}>Negeri Sembilan</option>
-                                                <option value="MYS06" {{ old('birthstate') == 'MYS06' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS06' ? 'selected' : '' : '' )}}>Pahang</option>
-                                                <option value="MYS07" {{ old('birthstate') == 'MYS07' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS07' ? 'selected' : '' : '' )}}>Penang</option>
-                                                <option value="MYS08" {{ old('birthstate') == 'MYS08' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS08' ? 'selected' : '' : '' )}}>Perak</option>
-                                                <option value="MYS09" {{ old('birthstate') == 'MYS09' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS09' ? 'selected' : '' : '' )}}>Perlis</option>
-                                                <option value="MYS10" {{ old('birthstate') == 'MYS10' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS10' ? 'selected' : '' : '' )}}>Sabah</option>
-                                                <option value="MYS11" {{ old('birthstate') == 'MYS11' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS11' ? 'selected' : '' : '' )}}>Sarawak</option>
-                                                <option value="MYS12" {{ old('birthstate') == 'MYS12' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS12' ? 'selected' : '' : '' )}}>Selangor</option>
-                                                <option value="MYS13" {{ old('birthstate') == 'MYS13' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS13' ? 'selected' : '' : '' )}}>Terengganu</option>
-                                                <option value="MYS14" {{ old('birthstate') == 'MYS14' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS14' ? 'selected' : '' : '' )}}>Wilayah Persekutuan Labuan</option>
-                                                <option value="MYS15" {{ old('birthstate') == 'MYS15' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS15' ? 'selected' : '' : '' )}}>Wilayah Persekutuan Kuala Lumpur</option>
-                                                <option value="MYS16" {{ old('birthstate') == 'MYS16' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'MYS16' ? 'selected' : '' : '' )}}>Wilayah Persekutuan Putrajaya</option>
-                                                <option value="others" {{ old('birthstate')=='others' ? 'selected' : (isset($application->birthstate) ? $application->birthstate == 'others' ? 'selected' : '' : '' )}}>Others</option>
+                                                
+                                                    @foreach ($statedd as $ddvalue) 
+                                                        <option value="{{ $ddvalue->codevalue }}" {{ old('birthstate') == $ddvalue->codevalue ? 'selected' : (isset($application->birthstate) ? $application->birthstate == $ddvalue->codevalue ? 'selected' : '' : '' )}}>{{ $ddvalue->c_engdesc }}</option>
+                                                    @endforeach
+                                                
+                                                
                                             </select>
                                             <!-- End Select -->
                                             <!-- Input field for Other state, hidden by default -->
