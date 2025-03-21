@@ -85,20 +85,31 @@ class ApplicationController extends Controller
             }
 
             // Dropdown dataset
+            // Added by     : Zaki
+            // Date         : 21/03/2025
+            // Description  : Get the dropdown data from the lookupcode table and populate it in the form.
+            
+            // State
+            $racedd = DB::table('lookupcode')
+                        ->where('codegroup', '=', 'RACE')
+                        ->orderBy('orderval', 'asc')
+                        ->get();
+
             $statedd = DB::table('lookupcode')
-                    ->where('codegroup', '=', 'STATE')
-                    ->orderBy('orderval', 'asc')
-                    ->get();
+                        ->where('codegroup', '=', 'STATE')
+                        ->orderBy('orderval', 'asc')
+                        ->get();
 
             return view('apply.index', [
-            'step' => $step,
-            'user' => $request->user(),
-            'application' => $request->user()->application,
-            'academic_qualification' => $request->user()->academic_qualification,
-            'guardian' => $request->user()->guardian,
-            'documents' => $request->user()->document,
-            'statedd' => $statedd,
-        ]);
+                'step' => $step,
+                'user' => $request->user(),
+                'application' => $request->user()->application,
+                'academic_qualification' => $request->user()->academic_qualification,
+                'guardian' => $request->user()->guardian,
+                'documents' => $request->user()->document,
+                'statedd' => $statedd,
+                'racedd' => $racedd,
+            ]);
     }
 
     // public function showApplicationForm()

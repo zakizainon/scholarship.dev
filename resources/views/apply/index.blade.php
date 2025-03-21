@@ -486,12 +486,9 @@
                                                                     "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                                                                     }' class="hidden" name="race">
                                                 <option value="">Select your race</option>
-                                                <option value="B01" {{ old('race') == 'B01' ? 'selected' : (isset($application->race) ? $application->race == 'B01' ? 'selected' : '' : '' )}}>Malay</option>
-                                                <option value="B02" {{ old('race') == 'B02' ? 'selected' : (isset($application->race) ? $application->race == 'B02' ? 'selected' : '' : '' )}}>Chinese</option>
-                                                <option value="B03" {{ old('race') == 'B03' ? 'selected' : (isset($application->race) ? $application->race == 'B03' ? 'selected' : '' : '' )}}>Indian</option>
-                                                <option value="B04" {{ old('race') == 'B04' ? 'selected' : (isset($application->race) ? $application->race == 'B04' ? 'selected' : '' : '' )}}>Bumiputera Sabah</option>
-                                                <option value="B05" {{ old('race') == 'B05' ? 'selected' : (isset($application->race) ? $application->race == 'B05' ? 'selected' : '' : '' )}}>Bumiputera Sarawak</option>
-                                                <option value="others" {{ old('race')=='others' ? 'selected' : (isset($application->race) ? $application->race == 'others' ? 'selected' : '' : '' )}}>Others</option>
+                                                @foreach ($statedd as $ddvalue)
+                                                <option value="{{ $ddvalue->codevalue }}" {{ old('race') == $ddvalue->codevalue ? 'selected' : (isset($application->race) ? $application->race == $ddvalue->codevalue ? 'selected' : '' : '' )}}>{{ $ddvalue->c_engdesc }}</option>
+                                                @endforeach
                                             </select>
                                             <!-- End Select -->
                                             <!-- Input field for Other Race, hidden by default -->
@@ -541,10 +538,9 @@
                                                 }' class="hidden" value="" name="birthstate">>
                                                 <option value="">Select your birth state</option>
                                                 
-                                                    @foreach ($statedd as $ddvalue) 
-                                                        <option value="{{ $ddvalue->codevalue }}" {{ old('birthstate') == $ddvalue->codevalue ? 'selected' : (isset($application->birthstate) ? $application->birthstate == $ddvalue->codevalue ? 'selected' : '' : '' )}}>{{ $ddvalue->c_engdesc }}</option>
-                                                    @endforeach
-                                                
+                                                @foreach ($statedd as $ddvalue) 
+                                                    <option value="{{ $ddvalue->codevalue }}" {{ old('birthstate') == $ddvalue->codevalue ? 'selected' : (isset($application->birthstate) ? $application->birthstate == $ddvalue->codevalue ? 'selected' : '' : '' )}}>{{ $ddvalue->c_engdesc }}</option>
+                                                @endforeach
                                                 
                                             </select>
                                             <!-- End Select -->
